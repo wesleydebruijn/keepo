@@ -1,0 +1,29 @@
+{
+  "name": "Keepo",
+  "version": "1.0.0",
+  "description": "An easy way to keep track of the things you've ordered",
+  "main": "index.js",
+  "dependencies": {
+    "angular2": "^2.0.0-beta.0",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.13",
+    "reflect-metadata": "^0.1.2",
+    "rxjs": "^5.0.0-beta.0",
+    "zone.js": "^0.5.10",
+    "materialize-css": "^0.97.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wesleydebruijn/keepo.git"
+  },
+  "author": "Jeffrey van Hoven, Wesley de Bruijn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wesleydebruijn/keepo/issues"
+  },
+  "homepage": "https://github.com/wesleydebruijn/keepo#readme"
+}
