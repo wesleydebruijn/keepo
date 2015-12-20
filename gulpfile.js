@@ -5,6 +5,7 @@ var source = require('vinyl-source-stream');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var minify = require('gulp-minify-css');
+var livereload = require('gulp-livereload');
 var express = require('express');
 
 var libs = [
@@ -39,9 +40,11 @@ gulp.task('css', function() {
         .pipe(concat('app.min.css'))
         .pipe(minify())
         .pipe(gulp.dest('./build'))
+        .pipe(livereload());
 });
 
 gulp.task('watch', function() {
+    livereload.listen();
     gulp.watch('public/assets/css/*', ['css']);
     gulp.watch('app/**/*.ts', ['build-core']);
 });
