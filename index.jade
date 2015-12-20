@@ -1,5 +1,11 @@
 html
   head
-    title!= title
+    title Keepo - Keep Orders Tracked
+    script(src="/modules/angular2/bundles/angular2-polyfills.js")
+    script(src="/modules/rxjs/bundles/Rx.umd.js")
+    script(src="/modules/angular2/bundles/angular2-all.umd.js")
+
   body
-    h1!= message
+    my-app Loading...
+    script(src="/app/app.component.js")
+    script(src="/app/boot.js")
