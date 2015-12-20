@@ -3,8 +3,7 @@ var app = express();
 
 // Server static files
 app.use(express.static(__dirname + '/public'));
-app.use('/modules', express.static(__dirname + '/node_modules'));
-app.use('/app', express.static(__dirname + '/app'));
+app.use('/build', express.static(__dirname + '/build'));
 
 // Set jade as our renderer
 app.set('view engine', 'jade');
