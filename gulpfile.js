@@ -43,10 +43,16 @@ gulp.task('css', function() {
         .pipe(livereload());
 });
 
+gulp.task('html', function() {
+  gulp.src('app/*.html')
+      .pipe(livereload());
+});
+
 gulp.task('watch', function() {
     livereload.listen();
     gulp.watch('public/assets/css/*', ['css']);
     gulp.watch('app/**/*.ts', ['build-core']);
+    gulp.watch('app/*.html', ['html']);
 });
 
 // Start Server
@@ -57,13 +63,9 @@ gulp.task('server', function() {
   app.use(express.static(__dirname + '/public'));
   app.use('/build', express.static(__dirname + '/build'));
 
-  // Set jade as our renderer
-  app.set('view engine', 'jade');
-  app.set('views', __dirname);
-
   // Router
   app.get('/', function (req, res) {
-    res.render('./app/index', { title: 'Hey', message: 'Hello world!'});
+    res.sendFile(__dirname + '/app/index.html');
   });
 
   // Register server
