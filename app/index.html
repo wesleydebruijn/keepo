@@ -4,11 +4,33 @@
     <meta charset="UTF-8" />
     <title>Keepo - Keeping track of anything</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/build/app.min.css" type="text/css">
-
   </head>
   <body>
-    <my-app>Loading...</my-app>
+    <div class="container">
+      <div class="col s12 m2 login z-depth-2">
+        <img src="assets/img/logo_medium.png" class="logo">
+        <h1>Keepo login</h1>
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="email" type="email" class="validate">
+                <label for="email">E-mail</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="password" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+            </div>
+          </form>
+          <button class="btn waves-effect waves-light green s12" type="submit" name="action">Login</button>
+        </div>
+        <a class="waves-effect waves-light btn blue"><i class="material-icons left">person</i> Login with Facebook</a>
+      </div>
+    </div>
+        <my-app>Loading...</my-app>
     <script type="text/javascript" src="/build/lib.min.js"></script>
     <script type="text/javascript" src="/build/app.min.js"></script>
   </body>
