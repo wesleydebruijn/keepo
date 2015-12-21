@@ -31,15 +31,17 @@ gulp.task('build-lib', function() {
         )
         .pipe(concat('lib.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./build'))
+        .pipe(gulp.dest('./build'));
 });
 
 gulp.task('build-core', function() {
     return browserify({entries: __dirname + '/app/boot.ts', extensions: ['.ts'], debug: true})
-          .plugin(tsify)
-          .bundle()
-          .pipe(source('app.min.js'))
-          .pipe(gulp.dest('./build'));
+        .plugin(tsify)
+        .bundle().on('error', function(e) {
+            console.log(e);
+        })
+        .pipe(source('app.min.js'))
+        .pipe(gulp.dest('./build'));
 });
 
 gulp.task('css', function() {
@@ -69,6 +71,7 @@ gulp.task('server', function() {
   // Server static files
   app.use(express.static(__dirname + '/public'));
   app.use('/build', express.static(__dirname + '/build'));
+  app.use('/views', express.static(__dirname + '/app/views'));
 
   // Router
   app.get('/', function (req, res) {

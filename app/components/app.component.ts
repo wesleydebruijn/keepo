@@ -1,7 +1,20 @@
 import {Component} from 'angular2/core'
 
+interface Form {
+    username: string,
+    password: string
+};
+
 @Component({
     selector: 'my-app',
-    template: '<h1>Keepo login</h1>'
+    templateUrl: '/views/login.html'
 })
-export class AppComponent{ }
+export class AppComponent{
+    public form: Form = {
+        username: "",
+        password: ""
+    }
+    submit() {
+        console.log(this.form.username, this.form.password);
+    }
+}
