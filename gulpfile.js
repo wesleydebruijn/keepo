@@ -53,7 +53,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('html', function() {
-  return gulp.src('app/*.html')
+  return gulp.src('app/views/*.html')
         .pipe(livereload());
 });
 
@@ -67,11 +67,17 @@ gulp.task('watch', function() {
 // Start Server
 gulp.task('server', function() {
   var app = express();
+  var http = require('http').Server(app);
+  var io = require('socket.io')(http);
 
   // Server static files
   app.use(express.static(__dirname + '/public'));
   app.use('/build', express.static(__dirname + '/build'));
   app.use('/views', express.static(__dirname + '/app/views'));
+
+  io.on('connection', function(socket) {
+     console.log('a user connected');
+  });
 
   // Router
   app.get('/', function (req, res) {
