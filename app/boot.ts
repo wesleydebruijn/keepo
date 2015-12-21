@@ -1,6 +1,6 @@
 import {bootstrap} from 'angular2/platform/browser'
 import {SessionComponent} from './components/session.component';
-import {AppComponent} from './components/app.component';
+import {LoginComponent} from './components/login.component';
 import {Component, provide} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 
@@ -11,7 +11,7 @@ import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, LocationStrategy, Hash
                <router-outlet></router-outlet>`,
     directives: [ROUTER_DIRECTIVES]})
 @RouteConfig([
-    {path: '/', component: AppComponent, as: 'Home'},
+    {path: '/', component: LoginComponent, as: 'Home'},
     {path: '/session', component: SessionComponent, as: 'Session' }])
 class RootComponent {}
 
