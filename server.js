@@ -3,6 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+// FRONT-END SERVER
 // Server static files
 app.use(express.static(__dirname + '/public'));
 app.use('/views', express.static(__dirname + '/app/views'));
@@ -20,5 +21,5 @@ app.get('/', function (req, res) {
 var server = app.listen(3000, function() {
   var host = server.address().address;
   var port = server.address().port;
-  console.log("Server succesfully started");
+  console.log('Frontend server listening on port 3000');
 });
