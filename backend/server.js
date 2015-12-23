@@ -16,6 +16,6 @@ app.use('/', routes);
 // create server
 models.sequelize.sync().then(function () {
   var server = app.listen(3001, function() {
-    console.log('Backend server listening on port' + server.address().port);
+    console.log('Backend server listening on port ' + server.address().port);
   });
 });
