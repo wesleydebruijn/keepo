@@ -16,6 +16,7 @@ var libs = {
     angular: gulp.src(['node_modules/angular2/bundles/angular2-polyfills.js',
                       'node_modules/angular2/bundles/angular2.js']),
     rx: gulp.src('node_modules/rxjs/bundles/Rx.js'),
+    socketio: gulp.src('node_modules/socket.io-client/socket.io.js'),
     materialize: gulp.src('node_modules/materialize-css/dist/js/materialize.min.js')
 };
 
@@ -30,6 +31,7 @@ gulp.task('build-lib', function() {
           libs.systemjs,
           libs.angular,
           libs.rx,
+          libs.socketio,
           libs.materialize
         )
         .pipe(concat('lib.min.js'))
