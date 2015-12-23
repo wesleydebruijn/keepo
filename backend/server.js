@@ -1,17 +1,21 @@
-var express = require('express'),
-  http = require('http'),
-  bodyParser = require('body-parser'),
-  logger = require('morgan');
-
+var express = require('express');
+var http = require('http');
+var bodyParser = require('body-parser');
+var logger = require('morgan');
+var models = require("./models");
 var app = express();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(logger('dev'));
 
-app.get('/', function(req, res, next) {
-  res.send('Dit is een test');
-})
+// routes
+var routes = require('./routes/index');
+app.use('/', routes);
 
-http.createServer(app).listen(3001, function (err) {
-  console.log('Backend server listening on port 3001');
+// create server
+models.sequelize.sync().then(function () {
+  var server = app.listen(3001, function() {
+    console.log('Backend server listening on port' + server.address().port);
+  });
 });
