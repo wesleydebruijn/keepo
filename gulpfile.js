@@ -7,31 +7,34 @@ var uglify = require('gulp-uglify');
 var minify = require('gulp-minify-css');
 var livereload = require('gulp-livereload');
 var streamqueue = require('streamqueue');
-var express = require('express');
+
+var buildDirectory = './public/build';
 
 var libs = {
     jquery: gulp.src('node_modules/jquery/dist/jquery.js'),
     systemjs: gulp.src('node_modules/systemjs/dist/system-register-only.js'),
     angular: gulp.src(['node_modules/angular2/bundles/angular2-polyfills.js',
                       'node_modules/angular2/bundles/angular2.js']),
+    rx: gulp.src('node_modules/rxjs/bundles/Rx.js'),
     materialize: gulp.src('node_modules/materialize-css/dist/js/materialize.min.js')
 };
 
 var styling = [
     'node_modules/materialize-css/dist/css/materialize.min.css',
-    'public/assets/css/*'
+    'public/css/*'
 ];
 
 gulp.task('build-lib', function() {
   return streamqueue({ objectMode: true },
+          libs.jquery,
           libs.systemjs,
           libs.angular,
-          libs.jquery,
+          libs.rx,
           libs.materialize
         )
         .pipe(concat('lib.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./build'));
+        .pipe(gulp.dest(buildDirectory));
 });
 
 gulp.task('build-core', function() {
@@ -41,14 +44,14 @@ gulp.task('build-core', function() {
             console.log(e);
         })
         .pipe(source('app.min.js'))
-        .pipe(gulp.dest('./build'));
+        .pipe(gulp.dest(buildDirectory));
 });
 
 gulp.task('css', function() {
     return gulp.src(styling)
           .pipe(concat('app.min.css'))
           .pipe(minify())
-          .pipe(gulp.dest('./build'))
+          .pipe(gulp.dest(buildDirectory))
           .pipe(livereload());
 });
 
@@ -61,34 +64,7 @@ gulp.task('watch', function() {
     livereload.listen();
     gulp.watch('app/**/*.ts', ['build-core']);
     gulp.watch('app/*.html', ['html']);
-    gulp.watch('public/assets/css/*', ['css']);
+    gulp.watch('public/css/*', ['css']);
 });
 
-// Start Server
-gulp.task('server', function() {
-  var app = express();
-  var http = require('http').Server(app);
-  var io = require('socket.io')(http);
-
-  // Server static files
-  app.use(express.static(__dirname + '/public'));
-  app.use('/build', express.static(__dirname + '/build'));
-  app.use('/views', express.static(__dirname + '/app/views'));
-
-  io.on('connection', function(socket) {
-     console.log('a user connected');
-  });
-
-  // Router
-  app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/app/index.html');
-  });
-
-  // Register server
-  var server = app.listen(3000, function() {
-  	var host = server.address().address;
-  	var port = server.address().port;
-  });
-});
-
-gulp.task('default', ['server', 'watch']);
+gulp.task('default', ['watch']);
