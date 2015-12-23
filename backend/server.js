@@ -2,7 +2,7 @@ var express = require('express');
 var http = require('http');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
-var models = require("./models");
+var models = require("./sequelize/models");
 var app = express();
 
 app.use(bodyParser.json());
@@ -13,7 +13,7 @@ app.use(logger('dev'));
 var routes = require('./routes/index');
 app.use('/', routes);
 
-// create server
+// create server & sync sequelize
 models.sequelize.sync().then(function () {
   var server = app.listen(3001, function() {
     console.log('Backend server listening on port ' + server.address().port);
