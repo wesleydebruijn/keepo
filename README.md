@@ -4,6 +4,12 @@
 # Keepo
 An easy way to keep track of the things you've ordered
 
+## Architecture
+This project is made to practice with popular web technologies. The following image shows the architecture of the front and back-end of this application.
+<p align="center">
+	<img src="https://raw.githubusercontent.com/wesleydebruijn/keepo/master/public/img/keepoarchitecture.png" />
+</p>
+
 ## Installation
 ### Global packages
 Install the following packages globally
