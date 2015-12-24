@@ -6,7 +6,6 @@ import 'rxjs/Rx';
 
 import { SessionComponent } from './components/session.component';
 import { LoginComponent } from './components/login.component';
-import { SessionService } from './services/session.service';
 
 @Component({
   selector: 'basic-routing',
