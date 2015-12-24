@@ -34,7 +34,7 @@ npm install concurrently -g
 Edit database configuration in <b>backend/config/config.json</b>
 #### Migrations & Seeds
 ```js
-cd backend
+cd backend/sequelize/
 sequelize db:migrate
 sequelize db:seed
 ```
