@@ -11,7 +11,7 @@ router.get('/sequelize', function(req, res, next) {
 });
 
 // Mongoose test
-router.get('/mongoose', function(req, res, next) {
+router.get('/session', function(req, res, next) {
   var name = "SessionName1";
 
   var Session = mongoose.model('Session', mongoose.Session);
