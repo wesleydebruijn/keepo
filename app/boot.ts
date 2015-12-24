@@ -22,4 +22,3 @@ import { SessionService } from './services/session.service';
 class RootComponent {}
 
 bootstrap(RootComponent, [ROUTER_PROVIDERS, provide(LocationStrategy, {useClass: HashLocationStrategy})]);
-//bootstrap(SessionComponent, [HTTP_PROVIDERS, provide(SessionService, {useClass: Http})]);
