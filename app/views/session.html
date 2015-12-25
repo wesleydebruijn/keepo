@@ -1,1 +1,22 @@
-<h1>Dit is een sessie</h1>
+<div class="container">
+  <div class="col s12 m6">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <div class="row">
+          <h4>Current session: {{ session.name }}</h4>
+          <div class="input-field col s12">
+            <input [(ngModel)]="sessionName" id="session_name" type="text" class="validate">
+            <label for="session_name">Session name</label>
+          </div>
+          <div class="input-field col s6">
+            <a (click)="joinSession()" class="waves-effect waves-light btn">Join session</a>
+          </div>
+          <div class="input-field col s6">
+            <a (click)="createSession()" class="waves-effect waves-light btn float-right">Create session</a>
+          </div>
+          <span>{{ session.error }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,18 +4,26 @@ import { Http, Headers } from 'angular2/http';
 @Injectable()
 export class SessionService {
   public baseUrl : string;
-  public http : Http;
-  public data : any;
-  constructor(http:Http) {
+  constructor(public http : Http) {
     this.baseUrl = 'http://localhost:3001/session';
-    this.http = http;
   }
 
-  getCurrentSession() : any {
-    this.http.get(this.baseUrl).map(res => res.text()).subscribe(
-      data => this.data = data,
-      err => console.error(err),
-      () => console.log(this.data)
-    );
+  getCurrent() : any {
+    return this.http.get(this.baseUrl + '/currentSession')
+      .map(res => res.json());
+  }
+
+  createSession(session : string) : any {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.baseUrl + '/create', JSON.stringify({ name: session }), { headers: headers })
+      .map(res => res.json());
+  }
+
+  joinSession(session: string) : any {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.baseUrl + '/join', JSON.stringify({ name: session }), { headers: headers })
+      .map(res => res.json());
   }
 }
