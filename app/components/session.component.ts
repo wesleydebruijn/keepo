@@ -32,7 +32,7 @@ export class SessionComponent {
     if(this.sessionName == this.session.name) {
       this.session.error = ALREADY_IN_SESSION;
       return false;
-    } else if(this.sessionName.length < 6) {
+    } else if(this.sessionName == null || this.sessionName.length < 6) {
       this.session.error = ERROR_TOO_SHORT;
       return false;
     }

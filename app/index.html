@@ -12,6 +12,11 @@
         <my-app></my-app>
         <script type="text/javascript" src="/build/lib.min.js"></script>
         <script type="text/javascript" src="/build/app.min.js"></script>
-        <script> var socket = io(); </script>
+        <script>
+          var socket = io();
+          socket.on('welcome', function(data) {
+            socket.emit('save', {name: 'a-username', id: data.id});
+          });
+        </script>
   </body>
 </html>

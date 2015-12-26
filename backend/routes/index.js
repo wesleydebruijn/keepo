@@ -15,6 +15,7 @@ router.get('/sequelize', function(req, res, next) {
 
 // Mongoose test
 router.post('/session/join', function(req, res, next) {
+  //io.hello();
   var Session = mongoose.model('Session', mongoose.Session);
 
   Session.findOne({ 'name': req.body.name }, function(err, data) {

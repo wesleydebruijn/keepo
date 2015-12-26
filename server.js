@@ -18,9 +18,14 @@ var server = http.listen(3000, function() {
   console.log('Frontend server listening on port ' + server.address().port);
 });
 
+var clients = [];
+
 io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
+  socket.on('save', function(data) {
+    var client = new Object();
+    client.id = data.id;
+    client.name = data.name;
+    client.session = "";
+    clients.push(client);
   });
 });
